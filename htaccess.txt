@@ -1,0 +1,34 @@
+
+HTaccess
+
+Apache directive level configuartion file
+it can be used for Autherization,error handling,
+redirect,cache,user permission
+
+Redirect
+RewriteEngine On
+Redirect 301 / http://google.com
+
+Autherization
+RewtiteEngin On
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserfile D:\.htpasswd
+Require valid-user
+
+.htpasswd
+anoop:123456
+
+
+Cache
+<FileMatch "\.(jpg|jpeg|png|gif|swf)$">
+	Header set Cache-Control "max-age=604800, public"
+</FileMatch>
+
+Remove extension .php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+Redirect
+RewriteRule ^hello index.php
+
